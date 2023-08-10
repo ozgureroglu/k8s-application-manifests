@@ -1,0 +1,23 @@
+apiVersion: networking.test-k8s-installation.io/v1
+kind: Ingress
+metadata:
+  name: ssl-demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+  - hosts:
+    - qubitera.com
+    secretName: qubitera-tls-cert
+  
+  rules:
+  - host: qubitera.com
+    http:
+      paths:
+        - path: /
+          pathType: Exact
+          backend:
+            service:
+              name: backend-service
+              port:
+                number: 80

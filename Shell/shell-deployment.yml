@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-shell
+spec:
+  selector:
+    matchLabels:
+      app: shell
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: shell
+    spec:
+      containers:
+      - name: shell
+        image: ozgureroglu/ubuntu-shell:latest
+        ports:
+        - containerPort: 80
+
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        volumeMounts:
+        - name: dags
+          mountPath: /opt/airflow/dags
+      volumes:
+      - name: tasksecrets
+        secret:
+          secretName: airflow/ozgurco/secrets

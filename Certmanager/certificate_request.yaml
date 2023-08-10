@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: qubitera-cert  #name of this object
+  namespace: default #same namespace as 
+spec:
+  dnsNames:
+    - qubitera.com
+  secretName: qubitera-tls-cert
+  issuerRef:
+    name: letsencrypt-cluster-issuer
+    kind: ClusterIssuer

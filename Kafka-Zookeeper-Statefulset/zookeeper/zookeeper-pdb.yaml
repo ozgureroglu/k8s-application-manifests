@@ -1,0 +1,11 @@
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: zookeeper
+  namespace: inavitas-staging
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: zookeeper
