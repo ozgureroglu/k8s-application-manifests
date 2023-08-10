@@ -25,10 +25,4 @@ spec:
           requests:
             cpu: 100m
             memory: 128Mi
-        volumeMounts:
-        - name: dags
-          mountPath: /opt/airflow/dags
-      volumes:
-      - name: tasksecrets
-        secret:
-          secretName: airflow/ozgurco/secrets
+
